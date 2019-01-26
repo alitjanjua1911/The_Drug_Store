@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block body_content %}
+
+<!-- main wrapper start -->
+<main>
+    <!-- breadcrumb area start -->
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb-wrap text-center">
+                        <nav aria-label="breadcrumb">
+                            <h2>contact</h2>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">contact us</li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb area end -->
+    {% if messages %}
+        {% for m in messages %}
+            <script type="text/javascript">
+                alert('{{ m }}')
+            </script>
+        {% endfor %}
+    {% endif %}
+{#    <div>#}
+{#        {% if messages %}#}
+{#            <ul class="messages">#}
+{#                {% for message in messages %}#}
+{#                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>#}
+{#                {% endfor %}#}
+{#            </ul>#}
+{#        {% endif %}#}
+{#    </div>#}
+
+
+    <!-- contact area start -->
+    <div class="contact-area">
+        <div class="container-fluid p-0">
+            <div class="row no-gutters">
+                <div class="col-lg-6">
+                    <div class="contact-message pt-56 pb-60">
+                        <h2>tell us your project</h2>
+                        <form id="contact-form"  method="post" class="contact-form">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <input name="name" placeholder="Name *" type="text" required>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <input name="phone" placeholder="Phone *" type="text" required>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <input name="email_address" placeholder="Email *" type="text" required>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <input name="contact_subject" placeholder="Subject *" type="text">
+                                </div>
+                                <div class="col-12">
+                                    <div class="contact2-textarea text-center">
+                                        <textarea placeholder="Message *" name="message" class="form-control2"
+                                                  required=""></textarea>
+                                    </div>
+                                    <div class="contact-btn">
+                                        <button class="btn btn__bg btn__sqr" type="submit">Send Message</button>
+                                    </div>
+                                </div>
+                                <div class="col-12 d-flex justify-content-center">
+                                    <p class="form-messege"></p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                {% for c in contact_model %}
+                <div class="col-lg-6">
+                    <div class="contact-info bg-gray pt-56 pb-md-46 mb-sm-24">
+                        <h2>contact us</h2>
+                        <p>{{ c.description }}</p>
+{#                        <p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum#}
+{#                            est notare quam littera gothica, quam nunc putamus parum claram anteposuerit litterarum#}
+{#                            formas human.</p>#}
+                        <ul>
+                            <li>{{ c.address }}</li>
+                            <li>{{ c.email }}</li>
+                            <li>{{ c.phone_no }}</li>
+{#                            <li><i class="fa fa-fax"></i> Address : No 40 Baria Sreet 133/2 NewYork City</li>#}
+{#                            <li><i class="fa fa-phone"></i> info@yourdomain.com</li>#}
+{#                            <li><i class="fa fa-envelope-o"></i> +88013245657</li>#}
+                        </ul>
+                        <div class="working-time">
+                            <h3>Working hours</h3>
+                            <p><span>{{ c.workingDay_start }} – {{ c.workingDay_end }}:</span>{{ c.workingTime_start }}{{ c.workingTime_startZone }} – {{ c.workingTime_end }}{{ c.workingTime_endZone }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- contact area end -->
+
+    <!-- map area start -->
+    <div class="map-area-wrapper">
+        <div id="map_content" data-lat="23.763491" data-lng="90.431167" data-zoom="8" data-maptitle="HasTech"
+             data-mapaddress="Floor# 4,           House# 5, Block# C </br> Banasree Main Rd, Dhaka">
+        </div>
+    </div>
+    <!-- map area end -->
+</main>
+<!-- main wrapper end -->
+{% endblock %}

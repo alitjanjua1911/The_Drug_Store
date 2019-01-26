@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% load  staticfiles %}
+
+{% block body_content %}
+    <!-- main wrapper start -->
+<main>
+    <!-- breadcrumb area start -->
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb-wrap text-center">
+                        <nav aria-label="breadcrumb">
+                            <h2>shop</h2>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">about us</li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb area end -->
+
+    <!-- about wrapper start -->
+    <div class="about-us-wrapper pt-60 pb-60 pb-lg-56 pt-sm-58">
+        <div class="container">
+            {% for about in about_model %}
+                <div class="row">
+                <!-- About Text Start -->
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="about-text-wrap">
+                            <h2>{{ about.heading }}</h2>
+                            <p>{{ about.description1 }}</p>
+                            <p>{{ about.description2 }}</p>
+                        </div>
+                    </div>
+                    <!-- About Text End -->
+                    <!-- About Image Start -->
+                    <div class="col-xl-5 col-lg-6 ml-auto">
+                        <div class="about-image-wrap">
+                            <img src="{{ about.photo }}" alt="About"/>
+                        </div>
+                    </div>
+                    <!-- About Image End -->
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+    <!-- about wrapper end -->
+
+    <!-- team area start -->
+    <div class="team-area bg-gray pt-60 pb-20">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title text-center">
+                        <h2>our creative team</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% for team in team_model %}
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="team-member mb-30">
+                        <div class="team-thumb img-full">
+                            <img src="{{ team.photo }}" alt="">
+                            <div class="team-social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-linkedin"></i></a>
+                                <a href="#"><i class="fa fa-google-plus"></i></a>
+                            </div>
+                        </div>
+                        <div class="team-content text-center">
+                            <h3>{{ team.name }}</h3>
+                            <h6>{{ team.designation }}</h6>
+                            <p>{{ team.description }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+    <!-- team area end -->
+
+    <!-- testimonial area start -->
+    <div class="testimonial-area pt-60 pb-88">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title text-center">
+                        <h2 class="text-white">testimonial</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="testimonial-carousel-active slick-dot-style">
+                        {% for test in testimonial_model %}
+                            <div class="testimonial-item text-center">
+                                <div class="testimonial-thumb">
+                                    <img src="{{ test.photo }}" alt="">
+                                </div>
+                                <div class="testimonial-content">
+                                    <p>{{ test.description }}</p>
+                                    <h3>{{ test.name }}</h3>
+                                </div>
+                            </div> <!-- end single testimonial item -->
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- testimonial area end -->
+
+    <!-- choosing area start -->
+    <div class="choosing-area pt-60 pb-56 pb-md-24 pb-sm-24">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title text-center">
+                        <h2>why choose us</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="single-choose-item text-center mb-md-30 mb-sm-30">
+                        <i class="fa fa-globe"></i>
+                        <h4>free shipping</h4>
+                        <p>Amadea Shop is a very slick and clean e-commerce template with endless possibilities.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-choose-item text-center mb-md-30 mb-sm-30">
+                        <i class="fa fa-plane"></i>
+                        <h4>fast delivery</h4>
+                        <p>Amadea Shop is a very slick and clean e-commerce template with endless possibilities.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-choose-item text-center mb-md-30 mb-sm-30">
+                        <i class="fa fa-comments"></i>
+                        <h4>customers support</h4>
+                        <p>Amadea Shop is a very slick and clean e-commerce template with endless possibilities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- choosing area end -->
+</main>
+<!-- main wrapper end -->
+{% endblock %}
