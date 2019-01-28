@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block body_content %}
+<!-- main wrapper start -->
+<main>
+    <!-- breadcrumb area start -->
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb-wrap text-center">
+                        <nav aria-label="breadcrumb">
+                            <h2>blog</h2>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">blog list full width</li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb area end -->
+
+    <!-- blog main wrapper start -->
+    <div class="blog-main-wrapper pt-60 pb-60 pb-md-54 pb-sm-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    {% for blogs in blog_model %}
+                        <div class="blog-item-wrapper mb-30">
+                            <div class="blog-img blog-img__full-width">
+                                <a href="{% url 'blogdetails' blogs.id %} " >
+                                    <img src="{{ blogs.photo }}" alt="">
+                                </a>
+                            </div>
+                            <div class="blog-inner-content">
+                                <h5 class="cat-name"><a href="#">{{ blogs.blogCategory }}</a></h5>
+                                <h3><a href="blog-details.html">{{ blogs.blogName }}</a></h3>
+                                <ul class="blog-meta">
+                                    <li>Post by: <span>{{ blogs.postedBy }}</span></li>
+                                    <li>{{ blogs.blogDate }}</li>
+                                </ul>
+                                <p>{{ blogs.blogAbout }}</p>
+                                <a href="blog-details.html" class="btn btn__bg">read more</a>
+                                <div class="blog-share-link">
+                                    <h5>share this post</h5>
+                                    <div class="blog-social-icon">
+                                        <a href="#"><i class="fa fa-facebook"></i></a>
+                                        <a href="#"><i class="fa fa-linkedin"></i></a>
+                                        <a href="#"><i class="fa fa-twitter"></i></a>
+                                        <a href="#"><i class="fa fa-pinterest"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+
+                    <!-- start pagination area -->
+                    <div class="paginatoin-area text-center mt-60 mt-md-52 mt-sm-60">
+                        <ul class="pagination-box">
+                            <li><a class="Previous" href="#"><i class="ion-ios-arrow-left"></i></a></li>
+                            <li class="active"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a class="Next" href="#"><i class="ion-ios-arrow-right"></i></a></li>
+                        </ul>
+                    </div>
+                    <!-- end pagination area -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- blog main wrapper end -->
+</main>
+<!-- main wrapper end -->
+{% endblock %}

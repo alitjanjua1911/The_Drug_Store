@@ -26,5 +26,7 @@ urlpatterns = [
     path('contactus/', include('contact_us.urls')),
     path('aboutus/', include('about_us.urls')),
     path('login-register/', include('UserAccount.urls')),
-    path('logout/', views.logout_view, name='logout')
+    path('logout/', views.logout_view, name='logout'),
+    path('blogs/', include('blogs.urls'))
+    # url(r'^blogs/', include('blogs.urls'))
 ]

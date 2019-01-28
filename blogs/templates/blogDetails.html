@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block body_content %}
+<!-- main wrapper start -->
+<main>
+    {% if messages %}
+        {% for m in messages %}
+            <script type="text/javascript">
+                alert('{{ m }}')
+            </script>
+        {% endfor %}
+    {% endif %}
+    <!-- breadcrumb area start -->
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb-wrap text-center">
+                        <nav aria-label="breadcrumb">
+                            <h2>blog</h2>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">blog details</li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb area end -->
+
+    <!-- blog main wrapper start -->
+    <div class="blog-main-wrapper pt-60 pb-60 pb-md-54 pb-sm-54">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 order-2">
+                    <div class="blog-sidebar-wrapper pt-md-60 pt-sm-60">
+                        <div class="blog-sidebar">
+                            <h4 class="title">search</h4>
+                            <div class="sidebar-serch-form">
+                                <form action="#">
+                                    <input type="text" class="search-field" placeholder="search here">
+                                    <button type="submit" class="search-btn"><i class="fa fa-search"></i></button>
+                                </form>
+                            </div>
+                        </div> <!-- single sidebar end -->
+                        <div class="blog-sidebar">
+                            <h4 class="title">categories</h4>
+                            <ul class="blog-archive blog-category">
+                                {% for c in categories %}
+                                <li><a href="{% url 'blog' %} ">{{ c.blogCategory }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div> <!-- single sidebar end -->
+
+                        <div class="blog-sidebar">
+                            <h4 class="title">recent post</h4>
+
+                            <div class="recent-post">
+                                {% for r in recent_posts %}
+                                <div class="recent-post-item">
+                                    <div class="product-thumb">
+                                        <a href="{% url 'blog' %}">
+                                            <img src="{{ r.photo }}" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="recent-post-description">
+                                        <div class="product-name">
+                                            <h4><a href="{% url 'blog' %}">{{ r.blogName }}</a></h4>
+                                            <p>{{ r.blogDate }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div> <!-- single sidebar end -->
+                        <div class="blog-sidebar">
+                            <h4 class="title">Tags</h4>
+                            <ul class="blog-tags">
+                                {% for foo in tag_model %}
+                                    <li><a href="{% url 'blog' %}">{{ foo.blogTag }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div> <!-- single sidebar end -->
+                    </div>
+                </div>
+                <div class="col-lg-9 order-1">
+                    <div class="blog-item-wrapper blog-item-wrapper__blog-grid blog-item-wrapper__blog-details">
+
+                            <div class="blog-img">
+                                <div class="blog-single-slide">
+                                        <img src="{{ blog_model.photo }}" alt="">
+                                </div>
+                            </div>
+                            <div class="blog-inner-content">
+                                <h5 class="cat-name"><a href="#">{{ blog_model.blogCategory }}</a></h5>
+                                <h3>{{ blog_model.blogName }}</h3>
+                                <ul class="blog-meta">
+                                    <li>Post by: <span>{{ blog_model.postedBy }}</span></li>
+                                    <li>{{ blog_model.blogDate }}</li>
+                                </ul>
+                                <p>{{ blog_model.blogAbout }}</p>
+                                <blockquote><p>{{ blog_model.blogQuote }}</p></blockquote>
+                                <p>{{ blog_model.blogDescription }}</p>
+                                <div class="tag-line">
+                                    <h5>tag:</h5>
+                                    <a href="#">{{ blog_model.blogTag }}</a>
+                                </div>
+                                <div class="blog-share-link">
+                                    <h5>share this post</h5>
+                                    <div class="blog-social-icon">
+                                        <a href="#"><i class="fa fa-facebook"></i></a>
+                                        <a href="#"><i class="fa fa-linkedin"></i></a>
+                                        <a href="#"><i class="fa fa-twitter"></i></a>
+                                        <a href="#"><i class="fa fa-pinterest"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                    </div>
+                    <!-- comment area start -->
+                    <div class="comment-section pt-56">
+                        <h3>03 comment</h3>
+                        <ul>
+                            {% for comments in comments_model %}
+                                <li>
+                                    <div class="author-avatar">
+                                        <img src="{{ comments.photo }}" alt="">
+                                    </div>
+                                    <div class="comment-body">
+                                        <span class="reply-btn"><a href="#">reply</a></span>
+                                        <h5 class="comment-author">{{ comments.senderName }}</h5>
+                                        <div class="comment-post-date">
+                                            {{ comments.date }}
+                                        </div>
+                                        <p>{{ comments.comment }}</p>
+                                    </div>
+                                </li>
+                            {% endfor %}
+
+                        </ul>
+                    </div>
+                    <!-- comment area end -->
+                    <!-- start blog comment box -->
+                    <div class="blog-comment-wrapper pt-52">
+                        {% if user.is_authenticated %}
+                            <h3>leave a reply</h3>
+                            <p>Your email address will not be published. Required fields are marked *</p>
+                            <form method="post">
+                            {% csrf_token %}
+                                <div class="comment-post-box">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label>comment</label>
+                                            <textarea name="comment" placeholder="Write a comment"></textarea>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 mb-sm-20">
+                                            <label>Name</label>
+                                            <input name="name" type="text" class="coment-field" placeholder="Name">
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="coment-btn mt-20">
+                                                <input class="btn btn__bg btn__sqr" type="submit" name="submit"
+                                                       value="post comment">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        {% else %}
+                            <h3>Please login to add comments</h3>
+                        {% endif %}
+                    </div>
+                    <!-- start blog comment box -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- blog main wrapper end -->
+</main>
+<!-- main wrapper end -->
+{% endblock %}
