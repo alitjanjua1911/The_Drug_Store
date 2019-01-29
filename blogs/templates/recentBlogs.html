@@ -37,14 +37,14 @@
                                 </a>
                             </div>
                             <div class="blog-inner-content">
-                                <h5 class="cat-name"><a href="{% url 'blogcategories' blogs.blogCategory %}">{{ blogs.blogCategory }}</a></h5>
-                                <h3><a href="{% url 'blogdetails' blogs.id %}">{{ blogs.blogName }}</a></h3>
+                                <h5 class="cat-name"><a href="#">{{ blogs.blogCategory }}</a></h5>
+                                <h3><a href="blog-details.html">{{ blogs.blogName }}</a></h3>
                                 <ul class="blog-meta">
                                     <li>Post by: <span>{{ blogs.postedBy }}</span></li>
                                     <li>{{ blogs.blogDate }}</li>
                                 </ul>
                                 <p>{{ blogs.blogAbout }}</p>
-                                <a href="{% url 'blogdetails' blogs.id %} " class="btn btn__bg">read more</a>
+                                <a href="blog-details.html" class="btn btn__bg">read more</a>
                                 <div class="blog-share-link">
                                     <h5>share this post</h5>
                                     <div class="blog-social-icon">

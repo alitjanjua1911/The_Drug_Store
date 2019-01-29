@@ -6,7 +6,7 @@ class Blog(models.Model):
     blogCategory=models.CharField(max_length=50, null=True)
     blogName=models.CharField(max_length=50, null=True)
     postedBy=models.CharField(max_length=50, null=True)
-    blogDate=models.DateField()
+    blogDate=models.DateField(null=True, max_length=300)
     blogAbout=models.CharField(max_length=150, null=True)
     blogDescription=models.CharField(max_length=500, null=True)
     blogQuote=models.CharField(max_length=300, null=True)

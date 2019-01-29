@@ -49,7 +49,7 @@
                             <h4 class="title">categories</h4>
                             <ul class="blog-archive blog-category">
                                 {% for c in categories %}
-                                <li><a href="{% url 'blog' %} ">{{ c.blogCategory }}</a></li>
+                                <li><a href="{% url 'blogcategories' c.blogCategory %} ">{{ c.blogCategory }}</a></li>
                                 {% endfor %}
                             </ul>
                         </div> <!-- single sidebar end -->
@@ -61,13 +61,13 @@
                                 {% for r in recent_posts %}
                                 <div class="recent-post-item">
                                     <div class="product-thumb">
-                                        <a href="{% url 'blog' %}">
+                                        <a href="{% url 'recentBlogs' r.id %}">
                                             <img src="{{ r.photo }}" alt="">
                                         </a>
                                     </div>
                                     <div class="recent-post-description">
                                         <div class="product-name">
-                                            <h4><a href="{% url 'blog' %}">{{ r.blogName }}</a></h4>
+                                            <h4><a href="{% url 'recentBlogs' r.id %}">{{ r.blogName }}</a></h4>
                                             <p>{{ r.blogDate }}</p>
                                         </div>
                                     </div>
@@ -79,7 +79,7 @@
                             <h4 class="title">Tags</h4>
                             <ul class="blog-tags">
                                 {% for foo in tag_model %}
-                                    <li><a href="{% url 'blog' %}">{{ foo.blogTag }}</a></li>
+                                    <li><a href="{% url 'blogTag' foo.blogTag %}">{{ foo.blogTag }}</a></li>
                                 {% endfor %}
                             </ul>
                         </div> <!-- single sidebar end -->
@@ -123,7 +123,7 @@
                     </div>
                     <!-- comment area start -->
                     <div class="comment-section pt-56">
-                        <h3>03 comment</h3>
+                        <h3>{{ total_comments }} comment</h3>
                         <ul>
                             {% for comments in comments_model %}
                                 <li>
