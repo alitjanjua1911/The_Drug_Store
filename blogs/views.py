@@ -1,10 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from datetime import datetime, timedelta
-from django.urls import reverse
 from django.utils import timezone
-from .forms import commentsForm
-from .models import Blog
 
 from .models import Blog, blogComments
 
@@ -48,7 +45,13 @@ def BlogDetails(request, blogId=0):
 
     tags_model=Blog.objects.values('blogTag').distinct()
     if request.method=='GET':
-        return render(request, 'blogDetails.html', {'blog_model':blog_model, 'comments_model':comments_model, 'categories':categories, 'recent_posts':recent_posts, 'tag_model':tags_model, 'total_comments':totalComments })
+        return render(request, 'blogDetails.html',
+                      {'blog_model':blog_model,
+                       'comments_model':comments_model,
+                       'categories':categories,
+                       'recent_posts':recent_posts,
+                       'tag_model':tags_model,
+                       'total_comments':totalComments })
     else:
         if request.POST.get('name') and request.POST.get('comment'):
             commets = blogComments()

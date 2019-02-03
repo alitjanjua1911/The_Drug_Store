@@ -8,14 +8,7 @@ class RegistrationForm(UserCreationForm):
 
     class Meta:
         model=User
-        fields=(
-            'username',
-            'first_name',
-            'last_name',
-            'email',
-            'password1',
-            'password2'
-        )
+        exclude=()
 
     def save(self, comit=True):
         user=super(RegistrationForm, self).save(comit=False)

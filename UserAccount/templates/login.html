@@ -24,7 +24,13 @@
         </div>
     </div>
     <!-- breadcrumb area end -->
-
+    {% if messages %}
+        {% for m in messages %}
+            <script type="text/javascript">
+                alert('{{ m }}')
+            </script>
+        {% endfor %}
+    {% endif %}
     <!-- login register wrapper start -->
     <div class="login-register-wrapper pt-60 pb-60">
         <div class="container">

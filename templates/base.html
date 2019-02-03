@@ -79,6 +79,9 @@
                                         {% endif %}
                                     </li>
                                     <li>
+                                        <a href="#">Create a shop</a>
+                                    </li>
+                                    <li>
                                         <div class="dropdown header-top-dropdown">
                                             <span>Language:</span>
                                             <a class="dropdown-toggle" id="language" data-toggle="dropdown"
@@ -105,47 +108,55 @@
                             </div>
                             <div class="mini-cart-wrap">
                                 <button><i class="ion-bag"></i>
-                                    <span class="notification">2</span>
+                                    {% if user.is_authenticated %}
+                                        <span class="notification">2</span>
+                                    {% endif %}
                                 </button>
                                 <ul class="cart-list">
-                                    <li>
-                                        <div class="cart-img">
-                                            <a href="product-details.html"><img src="{% static 'assets/img/cart/cart-1.jpg' %}"
-                                                                                alt=""></a>
-                                        </div>
-                                        <div class="cart-info">
-                                            <h4><a href="product-details.html">simple product</a></h4>
-                                            <span class="cart-qty">Qty: 1</span>
-                                            <span>$60.00</span>
-                                        </div>
-                                        <div class="del-icon">
-                                            <i class="fa fa-times"></i>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="cart-img">
-                                            <a href="product-details.html"><img src="{% static 'assets/img/cart/cart-2.jpg' %}"
-                                                                                alt=""></a>
-                                        </div>
-                                        <div class="cart-info">
-                                            <h4><a href="product-details.html">virtual product</a></h4>
-                                            <span class="cart-qty">Qty: 2</span>
-                                            <span>$100.00</span>
-                                        </div>
-                                        <div class="del-icon">
-                                            <i class="fa fa-times"></i>
-                                        </div>
-                                    </li>
-                                    <li class="mini-cart-price">
-                                        <span class="subtotal">subtotal : </span>
-                                        <span class="subtotal-price ml-auto">$110.00</span>
-                                    </li>
-                                    <li class="checkout-btn">
-                                        <a href="#">View Cart</a>
-                                    </li>
-                                    <li class="checkout-btn">
-                                        <a href="#">checkout</a>
-                                    </li>
+                                    {% if user.is_authenticated %}
+                                        <li>
+                                            <div class="cart-img">
+                                                <a href="product-details.html"><img src="{% static 'assets/img/cart/cart-1.jpg' %}"
+                                                                                    alt=""></a>
+                                            </div>
+                                            <div class="cart-info">
+                                                <h4><a href="product-details.html">simple product</a></h4>
+                                                <span class="cart-qty">Qty: 1</span>
+                                                <span>$60.00</span>
+                                            </div>
+                                            <div class="del-icon">
+                                                <i class="fa fa-times"></i>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="cart-img">
+                                                <a href="product-details.html"><img src="{% static 'assets/img/cart/cart-2.jpg' %}"
+                                                                                    alt=""></a>
+                                            </div>
+                                            <div class="cart-info">
+                                                <h4><a href="product-details.html">virtual product</a></h4>
+                                                <span class="cart-qty">Qty: 2</span>
+                                                <span>$100.00</span>
+                                            </div>
+                                            <div class="del-icon">
+                                                <i class="fa fa-times"></i>
+                                            </div>
+                                        </li>
+                                        <li class="mini-cart-price">
+                                            <span class="subtotal">subtotal : </span>
+                                            <span class="subtotal-price ml-auto">$110.00</span>
+                                        </li>
+                                        <li class="checkout-btn">
+                                            <a href="#">View Cart</a>
+                                        </li>
+                                        <li class="checkout-btn">
+                                            <a href="#">checkout</a>
+                                        </li>
+                                    {% else %}
+                                        <li>
+                                            <h5>Login to view cart status</h5>
+                                        </li>
+                                    {% endif %}
                                 </ul>
                             </div>
                         </div>

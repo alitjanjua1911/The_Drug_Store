@@ -12,7 +12,7 @@ class contact(models.Model):
     workingTime_startZone = models.CharField(max_length=50, null=True)
     workingTime_end = models.IntegerField(null=True)
     workingTime_endZone = models.CharField(max_length=50, null=True)
-    status=models.BooleanField(null=True)
+    status=models.NullBooleanField(default=True)
 
     def __str__(self):
         return self.email

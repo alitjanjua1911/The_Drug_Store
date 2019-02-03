@@ -24,7 +24,13 @@
         </div>
     </div>
     <!-- breadcrumb area end -->
-
+    {% if messages %}
+        {% for m in messages %}
+            <script type="text/javascript">
+                alert('{{ m }}')
+            </script>
+        {% endfor %}
+    {% endif %}
     <!-- login register wrapper start -->
     <div class="login-register-wrapper pt-60 pb-60">
         <div class="container">
@@ -36,9 +42,29 @@
                             <h2>Singup Form</h2>
                             <form method="post">
                                 {% csrf_token %}
+                                <h3>Username</h3>
                                 <div class="single-input-item">
-                                    {{ user_form.as_ul }}
-{#                                    <input type="text" placeholder="Full Name" required/>#}
+                                    {{ user_form.username }}
+                                </div><br>
+                                <h3>First Name</h3>
+                                <div class="single-input-item">
+                                    <input type="text" name="first_name" required>
+                                </div><br>
+                                <h3>Last Name</h3>
+                                <div class="single-input-item">
+                                    <input type="text" name="last_name" required>
+                                </div><br>
+                                <h3>Email</h3>
+                                <div class="single-input-item">
+                                    <input type="email" name="email" required>
+                                </div><br>
+                                <h3>Password</h3>
+                                <div class="single-input-item">
+                                    {{ user_form.password1 }}
+                                </div><br>
+                                <h3>Confirm Password</h3>
+                                <div class="single-input-item">
+                                    {{ user_form.password2 }}
                                 </div>
 {#                                <div class="row">#}
 {#                                    <div class="col-lg-6">#}

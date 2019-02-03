@@ -1,8 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
-from django.core.checks import messages
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import logout
 
 # Create your views here.
 from django.urls import reverse
@@ -24,7 +23,16 @@ def register(request):
         user_form=UserCreationForm(request.POST)
         if user_form.is_valid():
             user_form.save()
-            return redirect(reverse('index'))
+            model = User.objects.latest('id')
+            model.email=request.POST['email']
+            model.first_name=request.POST['first_name']
+            model.last_name=request.POST['last_name']
+            model.save()
+            messages.success(request, "Successfully registered")
+            return redirect(reverse('login'))
+        else:
+            messages.success(request, "Username is already registered. try another one")
+            return redirect(reverse('register'))
 
     else:
         user_form=UserCreationForm()
