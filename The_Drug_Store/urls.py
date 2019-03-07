@@ -28,5 +28,4 @@ urlpatterns = [
     path('login-register/', include('UserAccount.urls')),
     path('logout/', views.logout_view, name='logout'),
     path('blogs/', include('blogs.urls'))
-    # url(r'^blogs/', include('blogs.urls'))
 ]

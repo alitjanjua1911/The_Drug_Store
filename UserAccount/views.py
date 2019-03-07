@@ -7,15 +7,6 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 
 def login(request):
-    # if request.method=="POST":
-    #     m = User.objects.get(username=request.POST['username'])
-    #     if m.password == request.POST['password']:
-    #         request.session['user'] = m.username
-    #         return redirect(reverse('index'))
-    #     else:
-    #         messages.error(request, 'Wrong username or password')
-    # else:
-    #     return render(request, 'login.html')
     return render(request, 'login.html')
 
 def register(request):

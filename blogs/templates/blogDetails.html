@@ -49,7 +49,7 @@
                             <h4 class="title">categories</h4>
                             <ul class="blog-archive blog-category">
                                 {% for c in categories %}
-                                <li><a href="{% url 'blogcategories' c.blogCategory %} ">{{ c.blogCategory }}</a></li>
+                                <li><a href="{% url 'blogcategories' c.blogCategory%}">{{ c.blogCategory }}</a></li>
                                 {% endfor %}
                             </ul>
                         </div> <!-- single sidebar end -->

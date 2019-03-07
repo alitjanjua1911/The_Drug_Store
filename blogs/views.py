@@ -6,12 +6,15 @@ from django.utils import timezone
 from .models import Blog, blogComments
 
 # Create your views here.
-def BlogView(request, blogcategories=None):
+def BlogView(request, blogcategories=None, recentblog=None, blogtag=None):
     # categories=request.GET['blogcategory']
     categories=blogcategories
-    eyc = type(categories)
     if categories:
         blog_model=Blog.objects.all().filter(blogCategory=categories).order_by('blogDate')
+    elif recentblog:
+        blog_model=Blog.objects.all().filter(id=recentblog).order_by('blogDate')
+    elif blogtag:
+        blog_model = Blog.objects.all().filter(blogTag=blogtag).order_by('blogDate')
     else:
         blog_model=Blog.objects.all().order_by('blogDate')
 
